@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enter Names</title>
+    <style>
+        #input-container {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"] {
+            margin-bottom: 10px;
+        }
+    </style>
     <script>
         function showNextInput(event, currentIndex) {
             if (event.key === 'Enter') {
@@ -20,10 +29,12 @@
 <body>
     <h1>Enter Names</h1>
     <form action="/names" method="post">
-        {% for i in range(1, 31) %}
-            <label for="name{{ i }}" style="display: none;" id="label{{ i }}">Name {{ i }}:</label>
-            <input type="text" id="name{{ i }}" name="name{{ i }}" style="display: none;" onkeydown="showNextInput(event, {{ i }})"><br><br>
-        {% endfor %}
+        <div id="input-container">
+            {% for i in range(1, 31) %}
+                <label for="name{{ i }}" style="display: none;" id="label{{ i }}">Name {{ i }}:</label>
+                <input type="text" id="name{{ i }}" name="name{{ i }}" style="display: none;" onkeydown="showNextInput(event, {{ i }})"><br>
+            {% endfor %}
+        </div>
         <button type="submit">Finish</button>
     </form>
     <script>
