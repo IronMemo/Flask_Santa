@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Santa Pairs</title>
+</head>
+<body>
+    <h1>Secret Santa Pairs</h1>
+    <ul>
+        {% for pair in pairs %}
+            <li>{{ pair[0] }} is Secret Santa for {{ pair[1] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
