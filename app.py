@@ -32,19 +32,27 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == ['POST']:
+    if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
+        
+        # Verifică dacă există deja un utilizator cu același email
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            return render_template('register.html', error="Email already in use")
+
+        # Verifică dacă parolele coincid
         if password == confirm_password:
             hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
             new_user = User(email=email, password=hashed_password)
             db.session.add(new_user)
             db.session.commit()
-            return redirect(url_for('login'))
+            return redirect(url_for('login'))  # Redirecționează la pagina de login
         else:
-            return "Passwords do not match"
+            return render_template('register.html', error="Passwords do not match")
     return render_template('register.html')
+
 
 @app.route('/names', methods=['GET', 'POST'])
 def names():
