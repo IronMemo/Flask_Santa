@@ -1,0 +1,7 @@
+body {
+    background-color: #f0f0f0; /* Culoare de fundal */
+    background-image: url('background.jpg'); /* Imagine de fundal */
+    background-size: cover; /* Acoperă întregul ecran */
+    background-repeat: no-repeat; /* Nu repeta imaginea */
+    background-position: center; /* Poziționează imaginea în centru */
+}
